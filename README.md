@@ -11,7 +11,7 @@ This is a library that contain rice cultivated area detection tools and other ge
 open CMD or Terminal
 
 ```python
-pip install dream_river
+pip install dream-river==0.0.5
 ```
 ## How to use 
 
