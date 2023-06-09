@@ -5,7 +5,7 @@ DESC ='This is a library that contain rice cultivated area detection tools and o
 setup(
     name='dream_river',
     packages=['dream_river'],
-    version='0.0.2',
+    version='0.0.5',
     license='MIT',
     author_email='dreamusaha@gmail.com',
     description= 'This is a library contained rice detection tools and other geospatial tools for jupyter environment on sphere.gistda.or.th in part of Data Cube',
@@ -14,8 +14,8 @@ setup(
     url= 'https://github.com/Pathakorn40/rice-detection',
     download_url= 'https://pypi.org/project/dream_river/',
     keywords= ['geography','geospatiol','gis', 'rice detection'],
-    install_requires= ['datacube','shapely','xarray','matplotlib','numpy','geopandas','dea_tools','sklearn',
-                'pydotplus','subprocess','odc','flusstools','skimage','gdal','scipy','math','folium','json','odc.ui','os','odc.io'],
+    install_requires= ['datacube','shapely','xarray','matplotlib','numpy','geopandas','dea_tools','scikit-learn',
+                'pydotplus','flusstools','scikit-image','GDAL','scipy','folium','odc.ui'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Science/Research',
