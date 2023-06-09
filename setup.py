@@ -12,7 +12,7 @@ setup(
     description= 'This is a library that contain rice detection tools and other geospatial tools for jupyter environment on https://sphere.gistda.or.th/ in part of Data Cube',
     long_description= DESC,
     author='Pathakorn Usaha',
-    url= 'https://github.com/Pathakorn40',
+    url= 'https://github.com/Pathakorn40/rice-detection',
     download_url= 'https://pypi.org/project/dream_river/',
     keywords= ['geography','geospatiol','gis', 'rice detection'],
     install_requires= ['datacube','shapely','xarray','matplotlib','numpy','geopandas','dea_tools','sklearn',
