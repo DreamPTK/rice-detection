@@ -1,4 +1,4 @@
-# Rice area detection 
+# Rice culivated area detection 
 
 PyPI: https://pypi.org/project/dream_river/
 ##### Now!!! We are going to improve the precision of detection. This is just Demo version.
