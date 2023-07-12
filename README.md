@@ -7,7 +7,7 @@ This is a library that contain rice cultivated area detection tools and other ge
 
 Note!!! The rice detection tools in this study are effective in detecting the growing stage of rice, specifically from the Tilling stage to the Heading stage.
 
-![](https://www.jircas.go.jp/sites/default/files/201905/2018_C01_fig1_en_0.jpg)
+![](https://www.mdpi.com/ijgi/ijgi-07-00073/article_deploy/html/images/ijgi-07-00073-g003.png))
 
 ##  How to setup
 
