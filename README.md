@@ -5,7 +5,7 @@ PyPI: https://pypi.org/project/dream_river/
 ## Description 
 This is a library that contain rice cultivated area detection tools and other geospatial tools for jupyter environment on sphere.gistda website in part of Data Cube. Thus, you needs go to https://sphere.gistda.or.th/ and register the account to access jupyter lab environment interactively from a browser. 
 
-Note!!! The rice detection tools in this study are effective in detecting the growing stage of rice, specifically from the Tilling stage to the Heading stage.
+Note!!! The rice detection tools in this study are effective in detecting the growing stage of rice, specifically from the Tilling stage to the Flowering stage.
 
 ![](https://www.mdpi.com/ijgi/ijgi-07-00073/article_deploy/html/images/ijgi-07-00073-g003.png))
 
