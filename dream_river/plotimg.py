@@ -2,7 +2,7 @@
 ploting tools for creating the interactive map
 for Open Data Cube 
 
-The some function reference from dea_tools library(https://www.dea.ga.gov.au/)
+The reference from dea_tools library(https://www.dea.ga.gov.au/)
 
 '''
 
@@ -17,12 +17,18 @@ import datacube
 import xarray as xr
 import matplotlib.pyplot as plt 
 import odc.ui
+import ipyleaflet
 
-
+from ipyleaflet import Map, TileLayer
+from ipywidgets import widgets as w
+from IPython.display import display
+from odc.ui import with_ui_cbk
 from pyproj import Transformer
 from odc.ui import image_aspect
 from folium.plugins import Draw, Geocoder, Fullscreen, LocateControl
 from datacube.utils.cog import write_cog 
+
+
 
 # This function is used to plot rgb image from dataset
 def rgb(ds,
@@ -431,4 +437,71 @@ def find_centroid(file, output):
         #save to output
     result.to_file(output)
     
+    
+# ADD Image layer on interactive map
+def img_OnMap(dss, rgb, with_draw_tools=True,zoom=None):
+    
+    polygons, bbox = odc.ui.dss_to_geojson(dss, bbox=True)
+    zoom = odc.ui.zoom_from_bbox(bbox)
+    center = (bbox.bottom + bbox.top) * 0.5, (bbox.right + bbox.left) * 0.5
+
+    
+    """Create a map using ipyleaflet."""
+         
+    m = ipyleaflet.Map(
+    center=center,
+    zoom=zoom,
+    scroll_wheel_zoom=True,  
+    layout=w.Layout(
+        width='600px',   
+        height='600px',  
+    ))
+
+    # Add full-screen and layer visibility controls
+    m.add_control(ipyleaflet.FullScreenControl())
+    m.add_control(ipyleaflet.LayersControl())
+    
+    m.add_layer(ipyleaflet.GeoJSON( data={'type': 'FeatureCollection',
+                                          'features': polygons},
+                                    style={
+                                          'opacity': 0.3,      
+                                          'fillOpacity': 0 },    
+                                    hover_style={'color': 'tomato'},  
+                                    name="Footprints"))
+    
+    img_layer = odc.ui.mk_image_overlay( rgb,
+                                         clamp=3000,  
+                                         fmt='png')   
+
+    # Add image layer to a map we created earlier
+    m.add_layer(img_layer)
+    
+    slider = w.FloatSlider(min=0, max=1, value=1,        
+                       orientation='vertical',       
+                       readout=False,                
+                       layout=w.Layout(width='2em')) 
+
+    # Connect slider value to opacity property of the Image Layer
+    w.jslink((slider, 'value'),         
+         (img_layer, 'opacity') )
+    m.add_control(ipyleaflet.WidgetControl(widget=slider))
+    
+
+    # Add a tile map layer 
+    tile_layer_gistda_sat = TileLayer(url='https://basemap.sphere.gistda.or.th/tiles/thailand_images/EPSG3857/{z}/{x}/{y}.jpeg?key=42B90819583344A789DA424BE70CDB61', name='Gistda Satellite')
+    m.add_layer(tile_layer_gistda_sat)
+    
+    tile_layer_gistda = TileLayer(url='https://basemap.sphere.gistda.or.th/tiles/sphere_hybrid/EPSG3857/{z}/{x}/{y}.jpeg?key=42B90819583344A789DA424BE70CDB61', name='Gistda Hybrid')
+    m.add_layer(tile_layer_gistda)
+    
+    tile_layer_gg_sat = TileLayer(url='https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', name='Google Satellite')
+    m.add_layer(tile_layer_gg_sat)
+    
+    tile_layer_gg = TileLayer(url='https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', name='Hybrid')
+    m.add_layer(tile_layer_gg)
+    
+    tile_layer_terrain = TileLayer(url='https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', name='Terrain')
+    m.add_layer(tile_layer_terrain)
+
+    return m
     
