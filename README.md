@@ -14,7 +14,7 @@ Note!!! The rice detection tools in this study are effective in detecting the gr
 open CMD or Terminal
 
 ```python
-pip install dream-river==0.0.7
+pip install dream-river==0.0.8
 ```
 ## How to use 
 
