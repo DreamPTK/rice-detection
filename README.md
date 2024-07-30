@@ -25,4 +25,4 @@ pip install dream-river==0.0.8
 import dream_river
 ```
 Develop by : Pathakorn Usaha
-github: https://github.com/Pathakorn40
+
